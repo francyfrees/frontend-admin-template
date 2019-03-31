@@ -12,8 +12,8 @@ import adminDashboard from './admin/index.vue'
     adminDashboard
   }
 })
-export default class dashboard extends Vue {
-  currentRole: string = 'adminDashboard'
+export default class Dashboard extends Vue {
+    currentRole: string = 'adminDashboard'
 }
 </script>
 

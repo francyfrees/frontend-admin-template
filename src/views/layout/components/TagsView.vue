@@ -77,6 +77,7 @@ export default class TagsView extends Vue {
   private top!: number
   private left!: number
   private selectedTag!: any
+  private generateTitle: (title: string) => string = generateTitle
   private data() {
     return {
       visible: false,
@@ -89,42 +90,41 @@ export default class TagsView extends Vue {
     return this.visitedV
   }
   @Watch('$route')
-  OnRouteChange() {
+  private OnRouteChange() {
     this.addViewTags()
     this.moveToCurrentTag()
   }
   @Watch('visible')
-  watchVisible(value: any) {
+  private watchVisible(value: any) {
     if (value) {
       document.body.addEventListener('click', this.closeMenu)
     } else {
       document.body.removeEventListener('click', this.closeMenu)
     }
   }
-  mounted() {
+  private mounted() {
     this.addViewTags()
   }
-  generateTitle: (title: string) => string = generateTitle
-  generateRoute() {
+  private generateRoute() {
     if (this.$route.name) {
       return this.$route
     }
     return false
   }
-  isActive(route: any) {
+  private isActive(route: any) {
     return route.path === this.$route.path
   }
-  isDashboard() {
+  private isDashboard() {
     return this.$route.path === '/dashboard'
   }
-  addViewTags() {
+  private addViewTags() {
     const route = this.generateRoute()
     if (!route) {
       return false
     }
     this.addVisitedViews(route)
   }
-  moveToCurrentTag() {
+  private moveToCurrentTag() {
     const tags: any = this.$refs.tag
     const scrollP: any = this.$refs.scrollPane
     if (!tags) return
@@ -137,7 +137,7 @@ export default class TagsView extends Vue {
       }
     })
   }
-  closeSelectedTag(view: any) {
+  private closeSelectedTag(view: any) {
     this.delVisitedViews(view).then((views: any) => {
       if (this.isActive(view)) {
         const latestView = views.slice(-1)[0]
@@ -149,27 +149,27 @@ export default class TagsView extends Vue {
       }
     })
   }
-  closeOthersTags() {
+  private closeOthersTags() {
     this.$router.push(this.selectedTag)
-    this.delVisitedViews(this.selectedTag).then((views: any) => {
+    this.delVisitedViews(this.selectedTag).then(() => {
       this.moveToCurrentTag()
     })
   }
-  closeAllTags() {
+  private closeAllTags() {
     this.delAllViews()
     this.$router.push('/')
   }
-  openMenu(tag: any, e: any) {
+  private openMenu(tag: any, e: any) {
     this.visible = true
     this.selectedTag = tag
     const offsetLeft = this.$el.getBoundingClientRect().left // container margin left
     this.left = e.clientX - offsetLeft + 15 // 15: margin right
     this.top = e.clientY
   }
-  closeMenu() {
+  private closeMenu() {
     this.visible = false
   }
-  transTag(tag: any) {
+  private transTag(tag: any) {
     tag.hash = CACHE_MARK
     return tag
   }

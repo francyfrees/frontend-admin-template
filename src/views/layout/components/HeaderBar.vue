@@ -174,7 +174,7 @@ export default class HeaderBar extends Vue {
       limitMoveNum: 2
     }
   }
-  signOut() {
+  private signOut() {
     this.SignOut().then(() => {
       // this.$router.push({ path: '/signIn' })
       location.reload()

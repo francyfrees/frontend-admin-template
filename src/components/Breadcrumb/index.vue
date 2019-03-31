@@ -36,6 +36,7 @@ import { generateTitle } from '@/utils/i18n'
 export default class Breadcrumb extends Vue {
   private levelList!: any[]
   private resMatched!: any[]
+  private generateTitle: (title: string) => string = generateTitle
   private data() {
     return {
       levelList: [],
@@ -50,7 +51,6 @@ export default class Breadcrumb extends Vue {
   private created() {
     this.getBreadcrumb()
   }
-  generateTitle: (title: string) => string = generateTitle
   private getBreadcrumb(): void {
     const route = this.$route.matched
     const matched: any[] = route.filter(item => item.name)

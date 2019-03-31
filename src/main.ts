@@ -33,7 +33,7 @@ if ('addEventListener' in document) {
   document.addEventListener(
     'DOMContentLoaded',
     () => {
-      ;(FastClick as any).attach(document.body)
+      (FastClick as any).attach(document.body)
     },
     false
   )

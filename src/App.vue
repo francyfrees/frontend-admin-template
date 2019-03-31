@@ -10,11 +10,11 @@
 <script lang="ts">
 import { Vue, Component } from 'vue-property-decorator'
 
-import { State, namespace } from 'vuex-class'
+import { namespace } from 'vuex-class'
 const appModule = namespace('app')
 
-@Component({})
+@Component
 export default class App extends Vue {
-  @appModule.State('theme') theme: any
+  @appModule.State('theme') theme!: string
 }
 </script>

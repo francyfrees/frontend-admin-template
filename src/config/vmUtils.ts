@@ -1,5 +1,5 @@
 interface IRouterParams {
-  [propName: string]: any
+    [propName: string]: any;
 }
 
 export default function install(Vue: any) {

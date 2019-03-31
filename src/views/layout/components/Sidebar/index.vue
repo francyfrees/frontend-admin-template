@@ -23,7 +23,6 @@
 </template>
 
 <script lang="ts">
-import { mapGetters } from 'vuex'
 import SidebarItem from './SidebarItem.vue'
 
 import { generateTitle } from '@/utils/i18n'
@@ -32,7 +31,7 @@ import configCode from '@/config/configCode'
 const { closeNavWidth, navWordCount, navWordWidth } = configCode
 
 import { Component, Vue } from 'vue-property-decorator'
-import { Getter, namespace } from 'vuex-class'
+import { namespace } from 'vuex-class'
 const counterModuleApp = namespace('app')
 const counterModulePermission = namespace('permission')
 
@@ -70,7 +69,7 @@ export default class HeaderBar extends Vue {
   }
   private genarateSideBar() {
     const wordCount: number[] = []
-    this.permissionRouters.forEach((item: any, index: number, array: any[]) => {
+    this.permissionRouters.forEach((item: any) => {
       if (!item.hidden && item.meta && item.meta.title) {
         const zhName = this.generateTitle(item.meta.title)
         if (zhName && zhName.length > 5) {
@@ -95,7 +94,7 @@ export default class HeaderBar extends Vue {
   }
   private findRouteName(router: any[], key: string, keyPath: string[]) {
     return router.some(
-      (item: any, index: number, array: any[]): boolean => {
+      (item: any): boolean => {
         // 查找对应点击的路由 && // 查找对应路由里侧导航显示的子路由，并且子路由中的字数超出显示范围
         if (
           (item.name === key || item.path === key) &&
@@ -115,7 +114,7 @@ export default class HeaderBar extends Vue {
     if (item.children && item.children.length > 0) {
       const wordCount: number[] = []
       item.children.forEach(
-        (itemChild: any, index: number, array: any[]): void => {
+        (itemChild: any): void => {
           // 计算出每个子路由的字数长度，对比是否大于标准长度，若是，则存到数组中
           if (!itemChild.hidden && itemChild.meta && itemChild.meta.title) {
             const zhName = this.generateTitle(itemChild.meta.title)
@@ -157,7 +156,7 @@ export default class HeaderBar extends Vue {
   // 3.多个路由菜单打开后，关闭一个之后，其他打开的路由菜单全部恢复标准宽度
 
   // 点击关闭路由菜单，重新计算当前展开路由菜单中最大的子路由长度，让导航宽度重新响应
-  private handleClose(key: string, keyPath: string[]) {
+  private handleClose(key: string) {
     if (this.device === 'desktop') {
       delete this.cacheCount[key]
       const res = this.recalculate()

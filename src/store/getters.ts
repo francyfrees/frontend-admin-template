@@ -1,39 +1,39 @@
 interface IState {
-  app: {
-    sidebar: {
-      opened: boolean
-      withoutAnimation: boolean
-    }
-    sidebarStatus: boolean
-    device: string
-    isLoading: boolean
-    language: string
-    theme: string
-    navWidth: number
-    varyWidth: number
-  }
-  tagsView: {
-    visitedViews: any[]
-    cachedViews: any[]
-  }
-  user: {
-    adminName: string
-    adminAvatar: string
-    rolesId: string | number
-  }
-  permission: {
-    hasCachePermission: boolean
+    app: {
+        sidebar: {
+            opened: boolean;
+            withoutAnimation: boolean;
+        };
+        sidebarStatus: boolean;
+        device: string;
+        isLoading: boolean;
+        language: string;
+        theme: string;
+        navWidth: number;
+        varyWidth: number;
+    };
+    tagsView: {
+        visitedViews: any[];
+        cachedViews: any[];
+    };
+    user: {
+        adminName: string;
+        adminAvatar: string;
+        rolesId: string | number;
+    };
     permission: {
-      modelPermission: number[]
-      modelOperationPermission: {
-        [propName: string]: string[]
-      }
-    }
-    routers: any[]
-  }
-  errorLog: {
-    logs: any[]
-  }
+        hasCachePermission: boolean;
+        permission: {
+            modelPermission: number[];
+            modelOperationPermission: {
+                [propName: string]: string[];
+            };
+        };
+        routers: any[];
+    };
+    errorLog: {
+        logs: any[];
+    };
 }
 
 const getters = {

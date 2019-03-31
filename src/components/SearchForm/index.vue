@@ -27,7 +27,7 @@ export default class SearchForm extends Vue {
       searchVal: ''
     }
   }
-  search(unitCb?: () => void) {
+  private search(unitCb?: () => void) {
     this.$emit('handleSearch', this.searchVal)
     unitCb && unitCb()
   }

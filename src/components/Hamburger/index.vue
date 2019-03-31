@@ -14,7 +14,7 @@
 
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator'
-import { State, Action, namespace } from 'vuex-class'
+import { namespace } from 'vuex-class'
 // 命名空间
 const counterModule = namespace('app')
 

@@ -83,76 +83,76 @@ import { ISignIn } from '@/interface/api/auth'
 
 @Component
 export default class SignIn extends Vue {
-  private listLoading: boolean = false
-  private pType: string = 'password'
-  private showIcon: string = 'icon-hide-pwd'
-  private form: { [propName: string]: any } = {
-    account: '',
-    password: '',
-    hash: ''
-  }
-  private rules: { [propName: string]: any } = rules
-  private created() {
-    // this.getHash()
-  }
-  private loading(boolean: boolean): void {
-    this.listLoading = boolean
-  }
-  private refs(ref: string, unitCb?: () => void): any {
-    unitCb && unitCb()
-    return this.$refs[ref]
-  }
-  private showPwd(): void {
-    if (this.pType === 'password') {
-      this.pType = 'text'
-      this.showIcon = 'icon-show-pwd'
-    } else {
-      this.pType = 'password'
-      this.showIcon = 'icon-hide-pwd'
+    private listLoading: boolean = false
+    private pType: string = 'password'
+    private showIcon: string = 'icon-hide-pwd'
+    private form: { [propName: string]: any } = {
+      account: '',
+      password: '',
+      hash: ''
     }
-  }
-  private getHash(): void {
-    getHash().then((response: Ajax.AxiosResponse) => {
+    private rules: { [propName: string]: any } = rules
+    private created() {
+    // this.getHash()
+    }
+    private loading(boolean: boolean): void {
+      this.listLoading = boolean
+    }
+    private refs(ref: string, unitCb?: () => void): any {
+      unitCb && unitCb()
+      return this.$refs[ref]
+    }
+    private showPwd(): void {
+      if (this.pType === 'password') {
+        this.pType = 'text'
+        this.showIcon = 'icon-show-pwd'
+      } else {
+        this.pType = 'password'
+        this.showIcon = 'icon-hide-pwd'
+      }
+    }
+    private getHash(): void {
+      getHash().then((response: Ajax.AxiosResponse) => {
+        const status = parseInt(response.data.status as string, 10)
+        if (status === HTTP_RESPONSE_STATUS_SUCCESS) {
+          this.form.hash = response.data.data.hash
+        }
+      })
+    }
+    private formSubmit(): void {
+      this.refs('form').validate(this.validateCb)
+    }
+    private validateCb(vaild: boolean) {
+      if (vaild) {
+        const data: ISignIn = {
+          account: this.form.account,
+          password: passwordEncrypt(this.form.hash, this.form.password),
+          hash: this.form.hash
+        }
+        this.handleSignIn(data)
+      }
+    }
+    private async handleSignIn(data: ISignIn) {
+      this.loading(true)
+      try {
+        await signIn(data).then(this.apiSignInCb)
+        this.loading(false)
+      } catch (error) {
+        console.log('err: ' + error)
+        this.loading(false)
+      }
+    }
+    private apiSignInCb(response: Ajax.AxiosResponse) {
       const status = parseInt(response.data.status as string, 10)
       if (status === HTTP_RESPONSE_STATUS_SUCCESS) {
-        this.form.hash = response.data.data.hash
+        this.$message({
+          message: SU_SIGN_IN,
+          type: 'success'
+        })
+        this.$router.push({ path: '/' })
+      } else {
+        errMsg(response)
       }
-    })
-  }
-  private formSubmit(): void {
-    this.refs('form').validate(this.validateCb)
-  }
-  private validateCb(vaild: boolean) {
-    if (vaild) {
-      const data: ISignIn = {
-        account: this.form.account,
-        password: passwordEncrypt(this.form.hash, this.form.password),
-        hash: this.form.hash
-      }
-      this.handleSignIn(data)
     }
-  }
-  private async handleSignIn(data: ISignIn) {
-    this.loading(true)
-    try {
-      await signIn(data).then(this.apiSignInCb)
-      this.loading(false)
-    } catch (error) {
-      console.log('err: ' + error)
-      this.loading(false)
-    }
-  }
-  private apiSignInCb(response: Ajax.AxiosResponse) {
-    const status = parseInt(response.data.status as string, 10)
-    if (status === HTTP_RESPONSE_STATUS_SUCCESS) {
-      this.$message({
-        message: SU_SIGN_IN,
-        type: 'success'
-      })
-      this.$router.push({ path: '/' })
-    } else {
-      errMsg(response)
-    }
-  }
 }
 </script>

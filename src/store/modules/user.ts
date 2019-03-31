@@ -53,7 +53,7 @@ const actions: ActionTree<any, any> = {
     return new Promise((resolve, reject) => {
       signOut().then(
         (response: any) => {
-          const status = parseInt(response.data.status)
+          const status = parseInt((response.data.status as string), 10)
           if (status === HTTP_RESPONSE_STATUS_SUCCESS) {
             resolve()
           }

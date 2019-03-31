@@ -98,8 +98,9 @@ export default class AppMain extends Vue {
       return []
     }
   })
-  routes!: object
+    routes!: object
   @Prop({ type: Boolean, default: false }) isNest!: boolean
+  private generateTitle: (title: string) => string = generateTitle
   private hasOneShowingChildren(children: any[]) {
     const showingChildren = children.filter(item => {
       return !item.hidden
@@ -112,7 +113,6 @@ export default class AppMain extends Vue {
     }
     return false
   }
-  private generateTitle: (title: string) => string = generateTitle
 }
 </script>
 <style rel="stylesheet/scss" lang="scss" scoped>

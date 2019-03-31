@@ -1,63 +1,63 @@
 export interface IAppState {
-  sidebar: {
-    opened: boolean;
-    withoutAnimation: boolean;
-  };
-  sidebarStatus: boolean;
-  device: string;
-  isLoading: boolean;
-  language: string;
-  theme: string;
-  navWidth: number;
-  varyWidth: number
+    sidebar: {
+        opened: boolean;
+        withoutAnimation: boolean;
+    };
+    sidebarStatus: boolean;
+    device: string;
+    isLoading: boolean;
+    language: string;
+    theme: string;
+    navWidth: number;
+    varyWidth: number;
 }
 
 export interface ICacheState {
-  cacheData: {
-    [propName: string]: any;
-  }
+    cacheData: {
+        [propName: string]: any;
+    };
 }
 
 export interface ISetCacheViewData {
-  viewName: string;
-  viewType: string;
-  cacheData: {
-    [propName: string]: any;
-  };
+    viewName: string;
+    viewType: string;
+    cacheData: {
+        [propName: string]: any;
+    };
 }
 
 export interface IErrorLogState {
-  logs: any[]
+    logs: any[];
 }
 
 export interface IPermissionState {
-  hasCachePermission: boolean;
-  permission: {
-    modelPermission: number[];
-    modelOperationPermission: {
-      [propName: string]: string[];
-    }
-  };
-  routers: any[];
+    hasCachePermission: boolean;
+    permission: {
+        modelPermission: number[];
+        modelOperationPermission: {
+            [propName: string]: string[];
+        };
+    };
+    routers: any[];
 }
 
 export interface IPermission {
-  modelPermission: number[];
-  modelOperationPermission: {
-    [propName: string]: string[];
-  }
+    modelPermission: number[];
+    modelOperationPermission: {
+        [propName: string]: string[];
+    };
 }
 
 export interface ISystemState {
-  mark: string
+    mark: string;
 }
 
 export interface ITagsViewState {
-  visitedViews: any[],
-  cachedViews: any[]
+    visitedViews: any[];
+    cachedViews: any[];
 }
 
 export interface IUserState {
-  adminName: string;
-  adminAvatar: string;
+    adminName: string;
+    adminAvatar: string;
 }

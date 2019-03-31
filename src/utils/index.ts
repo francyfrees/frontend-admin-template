@@ -6,9 +6,6 @@ import { IArguments, IOrigin } from '@/interface/utils/index'
 
 import configPrompt from '@/config/configPrompt'
 const {
-  SUBMIT,
-  CANCEL,
-  CANCEL_OPERATION,
   ER_UPLOAD_IMG_TYPE,
   ER_UPLOAD_IMG_SIZE
 } = configPrompt

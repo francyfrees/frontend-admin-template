@@ -17,7 +17,7 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
 
-import { State, namespace } from 'vuex-class'
+import { namespace } from 'vuex-class'
 const counterModule = namespace('tagsView')
 @Component
 export default class AppMain extends Vue {

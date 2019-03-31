@@ -62,31 +62,31 @@ import forget from './components/forget.vue'
     forget
   }
 })
-export default class auth extends Vue {
-  private page!: string
-  private data() {
-    return {
-      page: 'signInPage'
+export default class Auth extends Vue {
+    private page!: string
+    private data() {
+      return {
+        page: 'signInPage'
+      }
     }
-  }
-  get isSignInPage() {
-    return this.page === 'signInPage'
-  }
-  get isRegisterPage() {
-    return this.page === 'registerPage'
-  }
-  get isForgetPage() {
-    return this.page === 'forgetPage'
-  }
-  private switchSignInPage() {
-    this.page = 'signInPage'
-  }
-  private switchForgetPage() {
-    this.page = 'forgetPage'
-  }
-  private switchRegisterPage() {
-    this.page = 'registerPage'
-  }
+    get isSignInPage() {
+      return this.page === 'signInPage'
+    }
+    get isRegisterPage() {
+      return this.page === 'registerPage'
+    }
+    get isForgetPage() {
+      return this.page === 'forgetPage'
+    }
+    private switchSignInPage() {
+      this.page = 'signInPage'
+    }
+    private switchForgetPage() {
+      this.page = 'forgetPage'
+    }
+    private switchRegisterPage() {
+      this.page = 'registerPage'
+    }
 }
 </script>
 

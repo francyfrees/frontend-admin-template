@@ -1,13 +1,12 @@
-import store from '@/store'
 import { Component, Vue, Watch } from 'vue-property-decorator'
-import { State, Action, namespace } from 'vuex-class'
+import { namespace } from 'vuex-class'
 const counterModule = namespace('app')
 
-declare module 'vue/types/vue' {
-  interface Vue {
-    methodFromMixins(value: number | string): void // 记得声明一下，要不然会报错 Property 'methodFromMixins' does not exist on type 'App'.
-  }
-}
+// declare module 'vue/types/vue' {
+//   interface Vue {
+//     methodFromMixins(value: number | string): void // 记得声明一下，要不然会报错 Property 'methodFromMixins' does not exist on type 'App'.
+//   }
+// }
 
 const { body } = document
 const WIDTH = 1024
@@ -18,7 +17,7 @@ export default class Mixins extends Vue {
   @counterModule.State('sidebar') public aSidebar!: any
   @counterModule.State('device') public sDevice!: any
   @counterModule.Action public closeSideBar!: (data: {
-    withoutAnimation: boolean
+      withoutAnimation: boolean;
   }) => void
   @counterModule.Action public toggleDevice!: (data: string) => void
   get device() {

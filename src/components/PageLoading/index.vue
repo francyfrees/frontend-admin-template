@@ -10,7 +10,7 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
 
-import { Getter, Action, State, namespace } from 'vuex-class'
+import { namespace } from 'vuex-class'
 // 命名空间
 const counterModule = namespace('app')
 

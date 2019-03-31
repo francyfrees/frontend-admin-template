@@ -1,5 +1,4 @@
 <template>
-  <!-- <div class="app-wrapper" :class="{hideSidebar:!sidebar.opened}"> -->
   <div
     :class="classObj"
     class="app-wrapper"
@@ -45,7 +44,7 @@ import ResizeMixin from './mixin/ResizeHandler'
 import configCode from '@/config/configCode'
 const { closeNavWidth } = configCode
 
-import { Action, State, namespace } from 'vuex-class'
+import { namespace } from 'vuex-class'
 const counterModule = namespace('app')
 
 @Component({
@@ -65,7 +64,7 @@ export default class Layout extends Vue {
   @counterModule.State('navWidth') public navWidth!: number
   @counterModule.State('varyWidth') public width!: number
   @counterModule.Action public closeSideBar!: (data: {
-    withoutAnimation: boolean
+      withoutAnimation: boolean;
   }) => void
   get varyWidth() {
     return this.width

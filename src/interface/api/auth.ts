@@ -1,13 +1,13 @@
 /**
- * @param 
+ * @param
  * account 账号
  * password 加密密码
  * hash
  */
 export interface ISignIn {
-  account: string | number;
-  password: string;
-  hash: string;
+    account: string | number;
+    password: string;
+    hash: string;
 }
 
 /**
@@ -18,10 +18,10 @@ export interface ISignIn {
  * hash
  */
 export interface IRegister {
-  phone: string | number;
-  code: string;
-  password: string;
-  hash: string;
+    phone: string | number;
+    code: string;
+    password: string;
+    hash: string;
 }
 
 /**
@@ -32,8 +32,8 @@ export interface IRegister {
  * hash
  */
 export interface IForget {
-  phone: string | number;
-  code: string;
-  password: string;
-  hash: string;
+    phone: string | number;
+    code: string;
+    password: string;
+    hash: string;
 }

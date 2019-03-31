@@ -34,7 +34,7 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
 
-import { State, Action, namespace } from 'vuex-class'
+import { namespace } from 'vuex-class'
 const appModule = namespace('app')
 
 import configPrompt from '@/config/configPrompt'

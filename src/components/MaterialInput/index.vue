@@ -11,9 +11,9 @@
       />
       <input
         v-if="type === 'email'"
+        :id="id"
         v-model="currentValue"
         :name="name"
-        :id="id"
         :placeholder="placeholder"
         :readonly="readonly"
         :disabled="disabled"
@@ -28,9 +28,9 @@
       >
       <input
         v-if="type === 'url'"
+        :id="id"
         v-model="currentValue"
         :name="name"
-        :id="id"
         :placeholder="placeholder"
         :readonly="readonly"
         :disabled="disabled"
@@ -45,9 +45,9 @@
       >
       <input
         v-if="type === 'number'"
+        :id="id"
         v-model="currentValue"
         :name="name"
-        :id="id"
         :placeholder="placeholder"
         :readonly="readonly"
         :disabled="disabled"
@@ -67,9 +67,9 @@
       >
       <input
         v-if="type === 'password'"
+        :id="id"
         v-model="currentValue"
         :name="name"
-        :id="id"
         :placeholder="placeholder"
         :readonly="readonly"
         :disabled="disabled"
@@ -87,9 +87,9 @@
       >
       <input
         v-if="type === 'tel'"
+        :id="id"
         v-model="currentValue"
         :name="name"
-        :id="id"
         :placeholder="placeholder"
         :readonly="readonly"
         :disabled="disabled"
@@ -106,9 +106,9 @@
       >
       <input
         v-if="type === 'text'"
+        :id="id"
         v-model="currentValue"
         :name="name"
-        :id="id"
         :placeholder="placeholder"
         :readonly="readonly"
         :disabled="disabled"
@@ -125,9 +125,9 @@
       >
       <textarea
         v-if="type === 'textarea'"
+        :id="id"
         v-model="currentValue"
         :name="name"
-        :id="id"
         :placeholder="placeholder"
         :readonly="readonly"
         :disabled="disabled"
@@ -143,7 +143,7 @@
         @input="handleModelInput"
       />
       <label class="material-label">
-        <slot/>
+        <slot />
       </label>
     </div>
   </div>
@@ -159,9 +159,9 @@ export default class MaterialInput extends Vue {
   @Prop({ type: String, default: '' }) name!: string
   @Prop({ type: String, default: 'text' }) type!: string
   @Prop({ type: [String, Number, Array], default: '' }) value!:
-    | string
-    | number
-    | any[]
+  | string
+  | number
+  | any[]
   @Prop({ type: String, default: '' }) placeholder!: string
   @Prop({ type: Boolean, default: false }) readonly!: boolean
   @Prop({ type: Boolean, default: false }) disabled!: boolean
@@ -198,28 +198,28 @@ export default class MaterialInput extends Vue {
   private valueEvent(newValue: any) {
     this.currentValue = newValue
   }
-  handleModelInput(event: any) {
+  private handleModelInput(event: any) {
     const value = event.target.value
     this.$emit('input', value)
-    if ((<any>this.$parent.$options).componentName === 'ElFormItem') {
+    if ((<any> this.$parent.$options).componentName === 'ElFormItem') {
       if (this.fillPlaceHolderateEvent) {
         this.$parent.$emit('el.form.change', [value])
       }
     }
     this.$emit('change', value)
   }
-  handleFocus(focused: boolean) {
+  private handleFocus() {
     this.focus = true
     this.$emit('focus', event)
     if (this.placeholder && this.placeholder !== '') {
       this.fillPlaceHolder = this.placeholder
     }
   }
-  handleBlur() {
+  private handleBlur() {
     this.focus = false
     this.$emit('blur', event)
     this.fillPlaceHolder = null
-    if ((<any>this.$parent.$options).componentName === 'ElFormItem') {
+    if ((<any> this.$parent.$options).componentName === 'ElFormItem') {
       if (this.validateEvent) {
         this.$parent.$emit('el.form.blur', [this.currentValue])
       }
