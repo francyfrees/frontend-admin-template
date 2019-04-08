@@ -7,8 +7,7 @@
     "build": "vue-cli-service build",
     "lint": "eslint --fix --ext .ts,.vue src",
     "test:unit": "vue-cli-service test:unit",
-    "test:coverage": "vue-cli-service test:unit --coverage",
-    "cpd": "jsinspect src"
+    "test:coverage": "vue-cli-service test:unit --coverage"
   },
   "dependencies": {
     "@types/axios": "^0.14.0",
@@ -68,18 +67,5 @@
     "typescript-eslint-parser": "^22.0.0",
     "vue-jest": "^3.0.3",
     "vue-template-compiler": "^2.5.21"
-  },
-  "gitHooks": {
-    "pre-commit": "lint-staged"
-  },
-  "lint-staged": {
-    "*.js": [
-      "vue-cli-service lint",
-      "git add"
-    ],
-    "*.vue": [
-      "vue-cli-service lint",
-      "git add"
-    ]
   }
 }
