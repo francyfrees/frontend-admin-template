@@ -10,15 +10,6 @@ export function signIn(data: ISignIn): Promise<any> {
   })
 }
 
-export function register(data: IRegister): Promise<any> {
-  return request({
-    // url: '/client/login/login',
-    url: '/client/register',
-    method: 'POST',
-    data
-  })
-}
-
 export function resetPassword(data: IForget): Promise<any> {
   return request({
     // url: '/client/login/login',
@@ -36,7 +27,7 @@ export function signOut(): Promise<any> {
   })
 }
 
-export function getHash(): Promise<any> {
+export function fetchHash(): Promise<any> {
   return request({
     // url: '/v1/admin/gethash',
     url: '/client/getHash',
@@ -44,18 +35,10 @@ export function getHash(): Promise<any> {
   })
 }
 
-export function getUserInfo(): Promise<any> {
+export function fetchUserInfo(): Promise<any> {
   return request({
     url: '/client/getUserInfo',
     method: 'GET'
   })
 }
 
-export function sendCode(data: { [propName: string]: any }): Promise<any> {
-  return request({
-    // url: '/api/client/login/getTubeInfo',
-    url: '/client/sendCode',
-    method: 'POST',
-    data
-  })
-}

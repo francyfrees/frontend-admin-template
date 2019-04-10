@@ -7,13 +7,13 @@ function resolve(dir) {
 
 // cdn预加载使用
 const externals = {
-  vue: 'Vue',
+  'vue': 'Vue',
   'vue-router': 'VueRouter',
-  vuex: 'Vuex',
-  axios: 'axios',
+  'vuex': 'Vuex',
+  'axios': 'axios',
   'element-ui': 'ELEMENT',
   'js-cookie': 'Cookies',
-  nprogress: 'NProgress'
+  'nprogress': 'NProgress'
 }
 
 const cdn = {
@@ -22,7 +22,7 @@ const cdn = {
     css: [
       'https://unpkg.com/element-ui/lib/theme-chalk/index.css',
       'https://cdn.bootcss.com/nprogress/0.2.0/nprogress.min.css',
-      '//at.alicdn.com/t/font_741401_i7m5nzye7yh.css'
+      'http://at.alicdn.com/t/font_741401_i7m5nzye7yh.css'
     ],
     js: []
   },
@@ -31,7 +31,7 @@ const cdn = {
     css: [
       'https://unpkg.com/element-ui/lib/theme-chalk/index.css',
       'https://cdn.bootcss.com/nprogress/0.2.0/nprogress.min.css',
-      '//at.alicdn.com/t/font_741401_i7m5nzye7yh.css'
+      'http://at.alicdn.com/t/font_741401_i7m5nzye7yh.css'
     ],
     js: [
       'https://cdn.bootcss.com/vue/2.5.21/vue.min.js',
@@ -51,6 +51,15 @@ const productionGzip = true
 const productionGzipExtensions = ['js', 'css']
 
 module.exports = {
+  // 基本路径
+  publicPath: './',
+  // 输出文件目录
+  outputDir: 'dist',
+  // 放置生成的静态资源,(相对于 outputDir 的) 目录
+  assetsDir: 'static',
+  lintOnSave: process.env.NODE_ENV === 'development',
+  // 加速生产环境构建
+  productionSourceMap: false,
   devServer: {
     proxy: {
       '/api': {
@@ -74,7 +83,7 @@ module.exports = {
     // })
 
     /**
-     * 添加CDN参数到htmlWebpackPlugin配置中， 详见public/index.html 修改
+     * 添加 CDN 参数到htmlWebpackPlugin配置中， 详见public/index.html 修改
      */
     config.plugin('html').tap(args => {
       if (process.env.NODE_ENV === 'production') {
@@ -90,7 +99,7 @@ module.exports = {
     const svgRule = config.module.rule('svg') // 找到svg-loader
     svgRule.uses.clear() // 清除已有的loader, 如果不这样做会添加在此loader之后
     svgRule.exclude.add(/node_modules/) // 正则匹配排除node_modules目录
-    svgRule // 添加svg新的loader处理
+    svgRule // 添加 svg 新的 loader 处理
       .test(/\.svg$/)
       .use('svg-sprite-loader')
       .loader('svg-sprite-loader')
@@ -108,7 +117,7 @@ module.exports = {
   configureWebpack: config => {
     const myConfig = {}
     if (process.env.NODE_ENV === 'production') {
-      // 1. 生产环境npm包转CDN
+      // 1. 生产环境 npm 包转 CDN
       myConfig.externals = externals
 
       myConfig.plugins = []

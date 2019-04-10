@@ -4,7 +4,18 @@ export default {
   navWordWidth: 14,
 
   DOMAIN: 'https://homestays.oss-cn-beijing.aliyuncs.com/',
+  // 默认头像
   defaultAvatar: 'users/default_avatar.png',
+  // 银行卡默认图片
+  idBackAfterUpload: 'idback-after-upload.png',
+  // 身份证正面照片
+  idCardFacadeBeforeUpload: 'idfront-before-upload.png',
+  // 身份证反面照片
+  idCardNegativeBeforeUpload: 'idback-before-upload.png',
+  // 手持身份证照片
+  idCardHandAfterBeforeUpload: 'idhand-after-upload.png',
+  // 营业执照照片
+  licenseBeforeUpload: 'license-before-upload.png',
 
   HTTP_RESPONSE_STATUS_SUCCESS: 1,
   HTTP_RESPONSE_STATUS_ERROR: 0,

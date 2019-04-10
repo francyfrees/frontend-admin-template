@@ -6,7 +6,7 @@ const { signIn, page404, page401, dashboard } = configRouteName
 export default [
   {
     path: '/signIn',
-    component: () => import('@/views/auth/index.vue'),
+    component: () => import('@/views/auth/signIn.vue'),
     name: signIn,
     hidden: true
   },

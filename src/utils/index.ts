@@ -177,3 +177,32 @@ export function errMsg(response: Ajax.AxiosResponse) {
     })
   }
 }
+
+export function isObject(value: any) {
+  return Object.prototype.toString.call(value) === '[object Object]'
+}
+
+export function transformData(data: any, template: any) {
+  const object: any = {}
+  for (const key in template) {
+    if (Object.prototype.hasOwnProperty.call(template, key)) {
+      const value = template[key]
+      if (isObject(value)) {
+        // data[value['key']] 数据
+        // value['template'] 模板
+        object[key] = transformData(data[value['key']], value['template'])
+      } else if (Array.isArray(value)) {
+        // value[1] 模板
+        // data[value[0]] 数据
+        object[key] = []
+        for (const item of data[value[0]]) {
+          object[key].push(transformData(item, value[1]))
+        }
+      } else {
+        // value 模板
+        object[key] = data[value]
+      }
+    }
+  }
+  return object
+}

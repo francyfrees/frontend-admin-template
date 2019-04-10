@@ -6,6 +6,8 @@ module.exports = {
   // coverageDirectory: '<rootDir>/test/coverage', // 输出覆盖信息文件的目录
   coveragePathIgnorePatterns: [
     '/node_modules/',
+    '<rootDir>/dist/',
+    '<rootDir>/static/',
     '<rootDir>/src/utils/request.ts',
     '<rootDir>/src/utils/aesJsonFormat.ts',
     '<rootDir>/src/validate/',
